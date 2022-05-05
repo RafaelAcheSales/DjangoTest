@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        {% for choice in choices|dictsortreversed:'votes' %}
+            {% if forloop.counter != 1%}
+                <p>{{ choice.choice_text }} : {{choice.votes}}</p>
+            {% else %}
+                <p style="color:red" >{{ choice.choice_text }} : {{choice.votes}}</p>
+            {% endif %}
+        {% endfor %}
+    </body>
+</html>
