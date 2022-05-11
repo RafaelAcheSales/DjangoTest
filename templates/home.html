@@ -12,4 +12,17 @@
   <a href="{% url 'login' %}">Log In</a>
   <a href="{% url 'accounts:signup' %}">Sign Up</a>
 {% endif %}
+  <br>
+  
+  <a href="{% url 'polls:index' %}">Polls</a>
+  <script>
+    function setup() {
+      createCanvas(400, 400);
+    }
+    
+    function draw() {
+      background(220);
+      ellipse(mouseX, mouseY, 50, 50);
+    }
+  </script>
 {% endblock %}
