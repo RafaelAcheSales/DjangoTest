@@ -1,0 +1,14 @@
+{% for comment in comments %}
+    <h2> {{ comment.author }} says: </h2>
+    <p> {{ comment.text }} </p>
+{% endfor %}
+{% if user.is_authenticated %}
+    <form method="post">
+        {% csrf_token %} 
+        {{comment_form.as_p}}
+        <button type="submit" value="Add comment" style="margin-top: 10px;">Add comment</button>
+    </form>
+
+{% else %}
+    <p> <a href={% url "login"%}> Login to post here</a> </p>
+{% endif %}

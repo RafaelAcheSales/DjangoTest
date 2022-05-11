@@ -11,5 +11,6 @@
                 <p style="color:red" >{{ choice.choice_text }} : {{choice.votes}}</p>
             {% endif %}
         {% endfor %}
+        {%  include "polls/comments.html" %}
     </body>
 </html>
