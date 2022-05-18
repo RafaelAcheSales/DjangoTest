@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from polls.models import Question, Choice, Comment
 from .forms import CommentForm
-
+import json
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {'latest_question_list': latest_question_list}
@@ -56,4 +56,19 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+def get_votes_json(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    choices = question.choice_set.all()
+    data = {
+        'choices': [
+            {
+                'id': choice.id,
+                'name': choice.choice_text,
+                'votes': choice.votes,
+            }
+            for choice in choices
+        ]
+    }
+    return HttpResponse(json.dumps(data), content_type='application/json')
 
