@@ -15,14 +15,6 @@
   <br>
   
   <a href="{% url 'polls:index' %}">Polls</a>
-  <script>
-    function setup() {
-      createCanvas(400, 400);
-    }
-    
-    function draw() {
-      background(220);
-      ellipse(mouseX, mouseY, 50, 50);
-    }
-  </script>
+  {% load static %}
+  <script src="{% static 'js/game.js' %}"></script>
 {% endblock %}
